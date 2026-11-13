@@ -158,6 +158,21 @@
 .game-diversity .dv-request blockquote { margin: 0; font-size: 19px; }
 .game-diversity .dv-output { margin: 0; padding: 16px; border: 3px dashed var(--ee-blue); border-radius: 4px; background: #eef6f4; }
 .game-diversity .dv-output-text { margin: 0; font-size: 20px; font-weight: 700; text-align: center; padding: 16px 8px; }
+/* AI 생성 결과 그림(js/output-images.js가 넣는다) — 글 설명은 그림 아래 설명으로 작게 남긴다 */
+.game-diversity .dv-output-figure { position: relative; margin: 8px 0 0; }
+/* 직접 만든 그림: 원래 비율 그대로, 세로로 긴 그림도 화면을 다 덮지 않게 높이 제한 */
+.game-diversity .dv-output-img {
+  display: block; width: 100%; height: auto; max-height: 60dvh;
+  object-fit: contain;
+  background: #fff; border: 3px solid var(--ee-ink); border-radius: 4px;
+}
+.game-diversity .dv-output-tag {
+  position: absolute; top: 8px; left: 8px;
+  padding: 0 8px; font-size: 13px; font-weight: 700; line-height: 1.7;
+  background: var(--ee-cream); border: 2px solid var(--ee-ink); border-radius: 4px;
+}
+.game-diversity .dv-output-text.dv-output-caption { font-size: 16px; font-weight: 400; padding: 8px 4px 0; color: var(--dv-mute); }
+.game-diversity .dv-output-text.dv-output-caption::before { content: '▲ '; }
 .game-diversity .dv-quotes { list-style: none; padding: 0; display: grid; gap: 12px; }
 .game-diversity .dv-quote { border-left: 6px solid var(--ee-sage); padding: 4px 0 4px 16px; }
 .game-diversity .dv-quote .ee-speaker { margin-bottom: 4px; }
