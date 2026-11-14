@@ -278,6 +278,58 @@
   .game-diversity .dv-path dd { margin-bottom: 8px; }
 }
 
+/* ── 휴대폰 세로: 한 화면에 맞추기 ──
+   화면 높이를 [HUD · 무대 · 카드]로 나누고, 긴 내용은 카드 영역(.dv-panel) 안에서만 스크롤한다.
+   버튼 줄(.dv-actions)은 카드 아래에 고정되어 항상 보인다. 인쇄에는 적용하지 않도록 screen만. */
+@media screen and (max-width: 760px) and (orientation: portrait) {
+  .game-diversity { height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .game-diversity .dv-hud { flex: none; position: relative; min-height: 0; padding: 6px 12px; gap: 6px 8px; }
+  .game-diversity .dv-hud-task { font-size: 15px; line-height: 1.4; }
+  .game-diversity .dv-hud-task-label { font-size: 12px; }
+  .game-diversity .dv-main {
+    flex: 1 1 auto; min-height: 0; width: 100%; box-sizing: border-box;
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+  .game-diversity .dv-stage-wrap { flex: none; }
+  .game-diversity .dv-stage-box { width: min(100%, calc(24dvh * 16 / 9)); } /* 무대 높이 = 화면의 약 24% */
+  .game-diversity .dv-panel { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  /* 카드 안 간격·글자 조금 줄이기 */
+  .game-diversity .dv-card > * { margin-bottom: 12px; }
+  .game-diversity .dv-title { font-size: 20px; }
+  .game-diversity .dv-lead, .game-diversity .dv-ask, .game-diversity .dv-request blockquote { font-size: 17px; }
+  .game-diversity .dv-output-text { font-size: 18px; padding: 8px; }
+  .game-diversity .dv-output-img { max-height: 32dvh; }
+  /* 버튼 줄은 카드 아래에 고정 */
+  .game-diversity .dv-card .dv-actions {
+    position: sticky; bottom: 0; z-index: 1;
+    margin: 12px 0 0 !important; padding: 10px 0 4px;
+    background: var(--ee-cream);
+    box-shadow: 0 -12px 10px -10px rgba(41, 75, 64, .35);
+  }
+}
+/* ── 휴대폰 가로: 무대 | 카드 나란히 ── */
+@media screen and (orientation: landscape) and (max-height: 520px) {
+  .game-diversity { height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .game-diversity .dv-hud { flex: none; position: relative; min-height: 0; padding: 4px 12px; gap: 4px 8px; }
+  .game-diversity .dv-hud-task { font-size: 14px; line-height: 1.4; }
+  .game-diversity .dv-steps li { width: 24px; height: 24px; font-size: 12px; border-width: 2px; }
+  .game-diversity .dv-main { flex: 1 1 auto; min-height: 0; width: 100%; box-sizing: border-box; padding: 8px; gap: 8px; }
+  .game-diversity .dv-main[data-layout="scene"] { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .game-diversity .dv-main[data-layout="scene"] .dv-stage-box { width: 100%; }
+  .game-diversity .dv-main[data-layout="doc"] { display: flex; flex-direction: column; }
+  .game-diversity .dv-panel { height: 100%; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  .game-diversity .dv-card > * { margin-bottom: 10px; }
+  .game-diversity .dv-title { font-size: 19px; }
+  .game-diversity .dv-output-img { max-height: 45dvh; }
+  .game-diversity .dv-card .dv-actions {
+    position: sticky; bottom: 0; z-index: 1;
+    margin: 10px 0 0 !important; padding: 8px 0 4px;
+    background: var(--ee-cream);
+    box-shadow: 0 -12px 10px -10px rgba(41, 75, 64, .35);
+  }
+}
+
 /* ── 인쇄: 결과 보고서만 ── */
 @media print {
   .game-diversity { background: #fff; }
